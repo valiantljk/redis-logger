@@ -45,9 +45,13 @@ class Redis():
         put: put logs into redis
         get: get logs from redis
     """
-    def __init__(self, host, port, password):
+    def __init__(self, host, port, password=None):
         try:
-            self.redis = redis.StrictRedis(host = host,
+            if password == None:
+                self.redis = redis.StrictRedis(host = host,
+                                    port = port)
+            else:
+                self.redis = redis.StrictRedis(host = host,
                                     port = port,
                                     password = password)
         except Exception as e:
