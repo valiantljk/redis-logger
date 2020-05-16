@@ -73,6 +73,10 @@ python3 setup.py install --user
 from redis_logger import * 
 import uuid 
 
-
+#Logger Started
+host = os.getenv('RedisHost', default = '172.20.15.142')
+port = os.getenv('RedisPort', default = '6379')
+password = os.getenv('RedisPass', default = None)
+redis = Redis(host, port, password)
 
 ```
