@@ -1,0 +1,6 @@
+publish.sh
+.ipynb_checkpoints/
+__pycache__/
+dist/
+build/
+redis_logger.egg-info/
