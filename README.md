@@ -61,3 +61,18 @@ Timestamp:1589419207
 Total Logs:1
 ```
 
+# Detailed Steps for Integration on K8S
+* Install from source
+```
+git clone https://github.com/valiantljk/redis-logger
+cd redis-logger
+python3 setup.py install --user
+```
+* Modify your code
+```
+from redis_logger import * 
+import uuid 
+
+
+
+```
