@@ -79,4 +79,12 @@ port = os.getenv('RedisPort', default = '6379')
 password = os.getenv('RedisPass', default = None)
 redis = Redis(host, port, password)
 
+# check uuid 
+request_info = request.request_info
+if '[' in request_info:
+    uuid0 = request_info[request_info.find('[')+1:request_info.find(']')]
+else: 
+    #if no uuid found, then generate a new random one 
+    uuid0 = str(uuid.uuid1())
+
 ```
