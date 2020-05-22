@@ -1,5 +1,5 @@
 from redis_logger import * 
-import uuid,time
+import uuid,time,sys
 #For local test on mac
 #redis-server /usr/local/etc/redis.conf
 #redis-cli shutdown
@@ -10,9 +10,9 @@ class Test_Redis():
         self.r = None
     def test_connect(self):
         #setting up Redis connection
-        host = os.getenv('RedisHost', default = 'localhost')
+        host = os.getenv('RedisHost', default = '172.20.15.142')
         port = os.getenv('RedisPort', default = '6379')
-        password = os.getenv('RedisPass', default = 'idontknow')
+        password = os.getenv('RedisPass', default = None)
         r = Redis(host, port, password)
         self.r = r
     def test_put_onelog(self):
@@ -81,17 +81,22 @@ class Test_Redis():
         ttl = self.r.get_ttl(key)
         print('TTL for service:%s = %f'%(key,ttl))
 
-
-test = Test_Redis()
-test.test_connect()
+if __name__ == "__main__":
+    test = Test_Redis()
+    test.test_connect()
+    if len(sys.argv) < 2:
+        print('python test_redis_logger.y keyname')
+        exit()
+    key = sys.argv[1]
+    test.test_get_all(key)
 #test.test_put_onelog()
 #test.test_put_logs()
 #test.test_get_latest()
-key = 'humanalarm'
-key = 'route_guide_server'
-test.test_get_all(key)
-key = 'route_guide_client'
-test.test_get_all(key)
+#key = 'humanalarm'
+#key = 'route_guide_server'
+#test.test_get_all(key)
+#key = 'route_guide_client'
+#test.test_get_all(key)
 #test.test_set_expire()
 #test.test_get_latest()
 #test.test_get_latest()
