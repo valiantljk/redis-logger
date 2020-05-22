@@ -4,24 +4,10 @@
 pip3 install -i https://test.pypi.org/simple/ redis-logger==0.0.6
 ```
 
-* or Install from source code
+* or Install from source code [Recommended for service on Aliyun]
 ```
 python3 setup.py install 
 ```
-
-* Use it in your code
-```
-from redis_logger import * 
-r = Redis(host, port, password)
-log0 = RedisLog(sname = 'service_name', 
-                         fname = 'function_name',
-                         status = 0,
-                         error = 'error info',
-                         uuid = uuid0)
-key = 'service_name'
-r.put(key, log0)
-```
-
 
 # Local test
 * Start the redis server:
@@ -97,6 +83,5 @@ rlog0 = RedisLog(sname = 'human_detection_alarm_server',
 key = 'human_detection_alarm_server'
 r.put(key, rlog0)
 ###################################
-
 
 ```
