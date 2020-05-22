@@ -87,4 +87,22 @@ r.put(key, rlog0)
 ```
 
 # Validation
-
+Connect the cluster's vpn first.
+* Use redis-cli to validate
+```
+#redis-cli -h 172.20.15.142 -p 6379 lrange keyname start_offset end_offset
+redis-cli -h 172.20.15.142 -p 6379 lrange human_detection_alarm_server 0 1
+```
+* Use program to validate
+```
+python3 test_redis_logger.py human_detection_alarm_server # this will print all logs for key=human_detection_alarm_server in human-readble fromat, e.g., 
+UUID:9e17930e-9bd0-11ea-9728-e2a089bbf5e8
+Timestamp:1590113090
+Service Name:human_detection_alarm_server
+Function Name:DetectHumanFromVideo
+Status:1
+Error:https://test.cdn.sunmi.com/VIDEO/MOTION/B63BB39511C8A2205BC3E81BC45CE84C	0	0.29689615964889526
+UUID:e54680dc-9bd0-11ea-a4cf-e2a089bbf5e8
+Timestamp:1590113210
+Total Logs:339
+```
