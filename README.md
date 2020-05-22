@@ -73,18 +73,30 @@ python3 setup.py install --user
 from redis_logger import * 
 import uuid 
 
-#Logger Started
+
+# check if upstream service pass in a uuid, if not, generate a new one and pass on to downstream service
+request_info = request.request_info # assumed uuid is wrapped in request_info from upstream service, in the form of 'someinfo[uuid]someotherinfo'
+if '[' in request_info:
+    uuid0 = request_info[request_info.find('[')+1:request_info.find(']')]
+else:
+    #if no uuid found, then generate a new random one 
+    uuid0 = str(uuid.uuid1())
+
+###################################
+#Initialize Redis Logger
 host = os.getenv('RedisHost', default = '172.20.15.142')
 port = os.getenv('RedisPort', default = '6379')
 password = os.getenv('RedisPass', default = None)
-redis = Redis(host, port, password)
+r = Redis(host, port, password)
+#Construct a Log
+rlog0 = RedisLog(sname = 'human_detection_alarm_server', 
+                     fname = 'DetectHumanFromVideo',
+                     status = status,
+                     error = "{}\t{}\t{}".format(request.video_url, label, score),
+                     uuid = uuid0)
+key = 'human_detection_alarm_server'
+r.put(key, rlog0)
+###################################
 
-# check uuid 
-request_info = request.request_info
-if '[' in request_info:
-    uuid0 = request_info[request_info.find('[')+1:request_info.find(']')]
-else: 
-    #if no uuid found, then generate a new random one 
-    uuid0 = str(uuid.uuid1())
 
 ```
