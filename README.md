@@ -95,7 +95,10 @@ redis-cli -h 172.20.15.142 -p 6379 lrange human_detection_alarm_server 0 1
 ```
 * Use program to validate
 ```
-python3 test_redis_logger.py human_detection_alarm_server # this will print all logs for key=human_detection_alarm_server in human-readble fromat, e.g., 
+python3 test_redis_logger.py human_detection_alarm_server 
+```
+```
+This will print all logs for key=human_detection_alarm_server in human-readble fromat, e.g., 
 UUID:9e17930e-9bd0-11ea-9728-e2a089bbf5e8
 Timestamp:1590113090
 Service Name:human_detection_alarm_server
