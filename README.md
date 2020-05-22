@@ -47,7 +47,7 @@ Timestamp:1589419207
 Total Logs:1
 ```
 
-# Detailed Steps for Integration on K8S
+# Integration on K8S
 * Install from source
 ```
 git clone https://github.com/valiantljk/redis-logger
@@ -85,3 +85,6 @@ r.put(key, rlog0)
 ###################################
 
 ```
+
+# Validation
+
