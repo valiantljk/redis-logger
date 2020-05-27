@@ -111,6 +111,6 @@ Total Logs:339
 ```
 
 # Current Keys
-EVENT_ANALYSIS
-head_detection_server
-human_detection_alarm_server
+* EVENT_ANALYSIS
+* head_detection_server
+* human_detection_alarm_server
