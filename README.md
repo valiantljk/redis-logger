@@ -106,3 +106,8 @@ UUID:e54680dc-9bd0-11ea-a4cf-e2a089bbf5e8
 Timestamp:1590113210
 Total Logs:339
 ```
+
+# Current Keys
+EVENT_ANALYSIS
+head_detection_server
+human_detection_alarm_server
